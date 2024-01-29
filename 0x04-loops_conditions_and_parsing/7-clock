@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# prints cloth things
-
+#Creating a script that uses a nested loop
 hour=0
-
-while [ $hour -lt 13 ]; do
+while [ $hour -le 12 ]
+do
     echo "Hour: $hour"
-    min=1
-    while [ $min -lt 60 ]; do
-        echo "$min"
-        let min+=1
+    minutes=1
+    while [ $minutes -lt 60 ]
+    do
+	echo "$minutes"
+	((minutes++))
     done
-    let hour+=1
+    ((hour++))
 done

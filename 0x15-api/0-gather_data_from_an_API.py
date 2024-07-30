@@ -9,7 +9,12 @@ if __name__ == '__main__':
         print("Usage: {} <employee_id>".format(sys.argv[0]))
         sys.exit(1)
 
-    employee_id = sys.argv[1]
+    try:
+        employee_id = int(sys.argv[1])
+    except ValueError:
+        print("Employee ID must be an integer")
+        sys.exit(1)
+
     base_url = "https://jsonplaceholder.typicode.com"
 
     # Get employee info

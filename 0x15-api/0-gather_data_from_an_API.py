@@ -18,7 +18,7 @@ if __name__ == '__main__':
     if user_response.status_code != 200:
         print("Employee not found")
         sys.exit(1)
-    
+
     employee_name = user_response.json().get('name')
 
     # Get TODO list

@@ -1,43 +1,18 @@
 #!/usr/bin/python3
-"""Accessing a REST API for todo lists of employees"""
-
-import requests
+"""script using this REST API, for a given employee ID,
+returns information about his/her TODO list progress."""
+import requests as r
 import sys
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("Usage: {} <employee_id>".format(sys.argv[0]))
-        sys.exit(1)
-
-    try:
-        employee_id = int(sys.argv[1])
-    except ValueError:
-        print("Employee ID must be an integer")
-        sys.exit(1)
-
-    base_url = "https://jsonplaceholder.typicode.com"
-
-    # Get employee info
-    user_url = f"{base_url}/users/{employee_id}"
-    user_response = requests.get(user_url)
-    if user_response.status_code != 200:
-        print("Employee not found")
-        sys.exit(1)
-
-    employee_name = user_response.json().get('name')
-
-    # Get TODO list
-    todo_url = f"{base_url}/users/{employee_id}/todos"
-    todo_response = requests.get(todo_url)
-    tasks = todo_response.json()
-
-    # Calculate the number of done tasks and total tasks
-    done_tasks = [task for task in tasks if task.get('completed')]
-    total_tasks = len(tasks)
-    done_count = len(done_tasks)
-
-    # Print the output in the required format
-    print("Employee {} is done with tasks({}/{}):".format(
-        employee_name, done_count, total_tasks))
-    for task in done_tasks:
-        print("\t {}".format(task.get('title')))
+    url = 'https://jsonplaceholder.typicode.com/'
+    usr_id = r.get(url + 'users/{}'.format(sys.argv[1])).json()
+    to_do = r.get(url + 'todos', params={'userId': sys.argv[1]}).json()
+#    print(to_do)
+    completed = [title.get("title") for title in to_do if
+                 title.get('completed') is True]
+    print(completed)
+    print("Employee {} is done with tasks({}/{}):".format(usr_id.get("name"),
+                                                          len(completed),
+                                                          len(to_do)))
+    [print("\t {}".format(title)) for title in completed]

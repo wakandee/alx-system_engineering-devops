@@ -6,7 +6,7 @@ def number_of_subscribers(subreddit):
     for a given subreddit.
     """
     url = f'https://intranet.alxswe.com/rltoken/b-4nD6hwEeNYTwYl5yWNwA'
-    headers = {'User-Agent': 'my-app'}
+    headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(url, headers=headers, allow_redirects=False)
     
     if response.status_code == 200:

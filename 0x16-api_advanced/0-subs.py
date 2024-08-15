@@ -19,7 +19,7 @@ def number_of_subscribers(subreddit):
     
     # Debugging: Print the status code and response content
     print("Status Code:", response.status_code)
-    print("Response Content:", response.content)
+    # print("Response Content:", response.content)
 
     # Handle the response
     if response.status_code == 200:

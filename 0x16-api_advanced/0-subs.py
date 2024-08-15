@@ -7,12 +7,18 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Return the total number of subscribers on a given subreddit."""
+    # Replace with any custom User-Agent or headers if specified
+    headers = {"User-Agent": "Allan-Kipruto-User-Agent"}
+
+    # The endpoint URL, modify it if the intranet specifies something different
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {"User-Agent": "Mozilla/5.0"}
+
+    # Additional parameters or adjustments to the request can go here
     response = requests.get(url, headers=headers, allow_redirects=False)
+
+    # Custom error handling based on intranet instructions
     if response.status_code == 200:
         data = response.json()
-        subscribers = data['data']['subscribers']
+        subscribers = data['data'].get('subscribers', 0)
         return subscribers
-    else:
-        return 0
+    return 0

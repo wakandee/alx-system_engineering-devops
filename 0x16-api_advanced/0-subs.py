@@ -18,7 +18,6 @@ def number_of_subscribers(subreddit):
         headers={"User-Agent": "Custom"},
     )
 
-    if req.status_code == 200:
-        return req.json().get("data").get("subscribers")
-    else:
+    if req.status_code == 404:
         return 0
+    return req.json().get("data").get("subscribers")

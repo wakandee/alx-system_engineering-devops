@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 """ Module for a function that queries the Reddit API recursively."""
 
-
 import requests
 
 
 def count_words(subreddit, word_list, after='', word_dict={}):
-    """ A function that queries the Reddit API parses the title of
-    all hot articles, and prints a sorted count of given keywords
+    """ A function that queries the Reddit API, parses the title of
+    all hot articles, and prints a sorted count of given keywords.
     If no posts match or the subreddit is invalid, it prints nothing.
     """
 
